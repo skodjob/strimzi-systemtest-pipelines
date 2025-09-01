@@ -16,6 +16,15 @@ Or using Docker:
 docker build -t strimzi-systemtest:latest -f Containerfile .
 ```
 
+Add own strimzi sources to the container image
+
+```bash
+podman build -t strimzi-systemtest:latest \
+  --build-arg STRIMZI_REPO_URL=https://github.com/kornys/strimzi-kafka-operator \
+  --build-arg STRIMZI_REPO_BRANCH=fix-v2 \
+  -f Containerfile .
+```
+
 ## Running the Container
 
 ### Basic Run (Smoke Tests)
