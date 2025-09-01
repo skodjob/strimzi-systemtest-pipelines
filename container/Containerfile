@@ -11,6 +11,10 @@ ENV STRIMZI_HOME=/opt/strimzi
 ENV KUBECONFIG=/opt/kubeconfig/config
 ENV MAVEN_OPTS="-Xmx2048m -XX:+UseContainerSupport"
 
+# Build args
+ARG STRIMZI_REPO_URL=https://github.com/strimzi/strimzi-kafka-operator.git
+ARG STRIMZI_REPO_BRANCH=main
+
 # Switch to root to install dependencies
 USER root
 
@@ -38,11 +42,14 @@ RUN export ARCH=$(case $(uname -m) in x86_64) echo -n amd64 ;; aarch64) echo -n 
     mv operator-sdk_${OS}_${ARCH} /usr/local/bin/operator-sdk  && \
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && \
     chmod 700 get_helm.sh && \
-    ./get_helm.sh
+    ./get_helm.sh && \
+    curl -L https://github.com/mikefarah/yq/releases/download/v4.6.3/yq_linux_${ARCH} > yq && \
+    chmod +x yq && \
+    mv yq /usr/local/bin/
 
 # Clone reposiotory
 RUN mkdir -p ${STRIMZI_HOME} && \
-    git clone https://github.com/strimzi/strimzi-kafka-operator.git --depth 1 -b main ${STRIMZI_HOME}
+    git clone ${STRIMZI_REPO_URL} --depth 1 -b ${STRIMZI_REPO_BRANCH} ${STRIMZI_HOME}
 
 # Create strimzi user and directories
 RUN useradd -r -m -g 0 strimzi && \
