@@ -159,7 +159,6 @@ spec:
           # Copy specific test artifacts
           find /tmp/shared-artifacts -name "*.xml" -exec cp {} /tmp/test-results/ \; 2>/dev/null || true
           find /tmp/shared-artifacts -name "*.log" -exec cp {} /tmp/test-results/ \; 2>/dev/null || true
-          find /tmp/shared-artifacts -name "*.json" -exec cp {} /tmp/test-results/ \; 2>/dev/null || true
         else
           echo "Warning: No test artifacts found in shared volume"
         fi

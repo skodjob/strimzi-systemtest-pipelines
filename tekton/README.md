@@ -7,6 +7,8 @@ This directory contains Tekton pipeline definitions for running Strimzi Kafka Op
 - Tekton Pipelines installed on your cluster
 - Container registry access for the test image
 - Kubernetes cluster with sufficient resources
+  - min: 2CPU 8GB of RAM
+  - ideal: 4CPI 16GB RAM and more
 - Kubeconfig secret for target test cluster access
 
 ## Setup
@@ -59,6 +61,8 @@ data:
     STRIMZI_LOG_LEVEL=DEBUG
 ```
 
+Check available env [vars](https://github.com/strimzi/strimzi-kafka-operator/blob/main/development-docs/TESTING.md#environment-variables).
+
 ### 4. Install Tekton resources
 
 ```bash
@@ -107,7 +111,6 @@ The pipeline requires a kubeconfig secret for cluster access, specified by the `
 Test results include:
 - Maven Failsafe/Surefire XML reports
 - Test execution logs  
-- JSON artifacts
 
 ## Usage Examples
 
