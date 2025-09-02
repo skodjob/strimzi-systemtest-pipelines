@@ -1,6 +1,7 @@
 name: Build and Push Container Image
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 1 * * 0" # Weekly on Sundays at 01:00
   push:
@@ -8,13 +9,13 @@ on:
       - main
     paths:
       - 'container/Containerfile'
-      - '.github/workflows/build-container.yaml'
+      - '.github/workflows/build-container.yml'
   pull_request:
     branches:
       - main
     paths:
       - 'container/Containerfile'
-      - '.github/workflows/build-container.yaml'
+      - '.github/workflows/build-container.yml'
 env:
   REGISTRY: quay.io
   IMAGE_NAME: skodjob/strimzi-systemtest
