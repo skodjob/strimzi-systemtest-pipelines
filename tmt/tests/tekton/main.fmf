@@ -1,4 +1,9 @@
+test:
+  ./test.sh
+
 /smoke:
   summary: Run smoke tests
   duration: 60m
   tier: 1
+  environment+:
+    TEST_GROUPS: smoke
