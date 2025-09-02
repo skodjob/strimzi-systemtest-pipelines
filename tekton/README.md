@@ -66,14 +66,14 @@ Check available env [vars](https://github.com/strimzi/strimzi-kafka-operator/blo
 ### 4. Install Tekton resources
 
 ```bash
-kubectl apply -f .tekton/task.yaml
-kubectl apply -f .tekton/pipeline.yaml
+kubectl apply -f task.yaml
+kubectl apply -f pipeline.yaml
 ```
 
 ### 5. Run the pipeline
 
 ```bash
-kubectl create -f .tekton/pipelinerun.yaml
+kubectl create -f pipelinerun.yaml
 ```
 
 ## Configuration
