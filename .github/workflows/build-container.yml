@@ -1,6 +1,7 @@
 name: Build and Push Container Image
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 1 * * 0" # Weekly on Sundays at 01:00
   push:
