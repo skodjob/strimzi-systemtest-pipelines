@@ -9,13 +9,13 @@ on:
       - main
     paths:
       - 'container/Containerfile'
-      - '.github/workflows/build-container.yaml'
+      - '.github/workflows/build-container.yml'
   pull_request:
     branches:
       - main
     paths:
       - 'container/Containerfile'
-      - '.github/workflows/build-container.yaml'
+      - '.github/workflows/build-container.yml'
 env:
   REGISTRY: quay.io
   IMAGE_NAME: skodjob/strimzi-systemtest
