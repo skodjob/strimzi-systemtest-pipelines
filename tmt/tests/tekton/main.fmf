@@ -1,0 +1,4 @@
+/smoke:
+  summary: Run smoke tests
+  duration: 60m
+  tier: 1
