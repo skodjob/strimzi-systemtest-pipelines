@@ -34,10 +34,11 @@ kubectl apply -f tekton/pipeline.yaml -n test
 tkn pipeline start strimzi-systemtest \
   --param test-image="${HOST}:5001/strimzi-systemtest:latest" \
   --param test-profile="smoke" \
+  --param kubeconfig-secret=kubeconfig \
   --param test-groups="" \
   --param parallel-tests="1" \
   --param maven-args="" \
-  --param env-configmap="strimzi-test-env" \
+  --param env-configmap="dummy" \
   --workspace name=test-results,claimName=test-results-pvc \
   --namespace test \
   --showlog
