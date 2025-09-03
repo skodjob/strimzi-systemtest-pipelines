@@ -10,7 +10,7 @@ HOST=$(hostname --ip-address | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | awk 
 kubectl create ns test
 
 # Create secret
-kubectl create secret generic kubeconfig --from-file=config=$HOME/.kube/config
+kubectl create secret generic kubeconfig -n test --from-file=config=$HOME/.kube/config
 
 # Create PVC for test results
 kubectl create -n test -f - <<EOF
