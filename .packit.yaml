@@ -1,0 +1,31 @@
+# Default packit instance is a prod and only this is used
+# stg instance is present for testing new packit features in forked repositories where stg is installed.
+packit_instances: ["prod", "stg"]
+upstream_project_url: https://github.com/skodjob/strimzi-systemtest-pipelines
+issue_repository: https://github.com/skodjob/strimzi-systemtest-pipelines
+jobs:
+  ###############################################################################################
+  - job: tests
+    trigger: pull_request
+    # Suffix for job name
+    identifier: "smoke"
+    targets:
+      - centos-stream-9-x86_64
+    skip_build: true
+    manual_trigger: false
+    tf_extra_params:
+      test:
+        tmt:
+          name: smoke
+  ###############################################################################################
+  - job: tests
+    trigger: commit
+    branch: main
+    identifier: "smoke"
+    targets:
+      - centos-stream-9-x86_64
+    skip_build: true
+    tf_extra_params:
+      test:
+        tmt:
+          name: smoke
