@@ -9,6 +9,9 @@ HOST=$(hostname --ip-address | grep -oE '\b([0-9]{1,3}\.){3}[0-9]{1,3}\b' | awk 
 # Create namespace
 kubectl create ns test
 
+# Update kubeconfig
+sed -i "s/127.0.0.1/$HOST/g" $HOME/.kube/config
+
 # Create secret
 kubectl create secret generic kubeconfig -n test --from-file=config=$HOME/.kube/config
 
